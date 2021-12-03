@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             NotificationTypeSeeder::class,
             RoleSeeder::class,
             UserSeeder::class,
+            TransactionStatusSeeder::class,
         ]);
     }
 }

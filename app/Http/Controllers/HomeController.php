@@ -31,12 +31,23 @@ class HomeController extends Controller
         // $visitor = Visitor::all();
         // $user = User::all();
         // return view('admin.main',compact('visitor','user'));
-        return view('layouts.dashboard');
+        if (Auth::user()->role_id==3) {
+            return redirect()->route('user.beranda')->with('login','login berhasil');
+        } else {
+            // return redirect()->route('home');
+            return view('layouts.dashboard');
+        }
     }
 
     public function profile()
     {
-        return view('admin.profile');
+        return view('profile');
+    }
+
+    public function freelance()
+    {
+        $data = User::all()->where('role_id',2);
+        return view('admin.freelance', compact('data'));
     }
 
 }

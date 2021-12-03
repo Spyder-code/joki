@@ -10,18 +10,29 @@ use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
-    public function updateProfile(Request $request, $id)
+    public function updateProfile(Request $request)
     {
-        $request->validate([
+        $validate = $request->validate([
             'name' => 'required',
+            'phone' => 'required|numeric',
             'username' => 'required',
         ]);
 
-        User::find($id)->update($request->all());
+        if (!empty($request->image)) {
+            $request->validate([
+                'image' => 'image|mimes:jpeg,png,jpg,svg|max:2048'
+            ]);
+            $profileImage = Auth::id().'.jpg';
+            $path = $request->file('image')->storeAs('public/user/avatar', $profileImage);
+            $url = Storage::url($path);
+            $imgUrl = url($url);
+            $validate['avatar'] = $imgUrl;
+        }
+        User::find(Auth::id())->update($validate);
         return back()->with('success', 'Profil berhasil diupdate');
     }
 
-    public function updatePassword(Request $request,$id)
+    public function updatePassword(Request $request)
     {
         $request->validate([
             'password' => ['required', 'string', 'min:8', 'confirmed'],
@@ -29,10 +40,10 @@ class UserController extends Controller
         ]);
 
         if(Hash::check($request->current_password, Auth::user()->password)){
-            User::find($id)->update(['password'=>Hash::make($request->password)]);
+            User::find(Auth::id())->update(['password'=>Hash::make($request->password)]);
             return back()->with('success','Password berhasil diubah');
         }else{
-            return back()->with('danger','Password lama salah');;
+            return back()->with('error','Password lama salah');;
         }
     }
 

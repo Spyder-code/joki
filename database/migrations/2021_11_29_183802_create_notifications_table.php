@@ -17,6 +17,7 @@ class CreateNotificationsTable extends Migration
             $table->id();
             $table->foreignId('transaction_id')->constrained('transactions');
             $table->foreignId('notification_type_id')->constrained('notification_types')->default(1);
+            $table->boolean('is_read')->default(0);
             $table->timestamps();
         });
     }

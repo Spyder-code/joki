@@ -11,7 +11,7 @@ class TransactionUser extends Model
 
     protected $fillable = [
         'transaction_id',
-        'user_id',
+        'freelance_id',
         'status'
     ];
 
@@ -24,4 +24,5 @@ class TransactionUser extends Model
     {
         return $this->belongsTo(User::class);
     }
+
 }

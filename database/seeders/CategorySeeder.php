@@ -15,7 +15,21 @@ class CategorySeeder extends Seeder
     public function run()
     {
         $data = [
-            'Jasa'
+            'Makalah',
+            'Skripsi',
+            'Desain',
+            'Writing',
+            'Program',
+            'Power Point',
+            'Resume',
+            'Statistika',
+            'Review',
+            'Soal SMA',
+            'Soal Kuliah',
+            'Komputer',
+            'Art',
+            'Edit Video',
+            'Decoration',
         ];
 
         foreach ($data as $item ) {

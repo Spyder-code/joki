@@ -11,6 +11,7 @@ class Transaction extends Model
 
     protected $fillable = [
         'category_id',
+        'customer_id',
         'transaction_status_id',
         'code',
         'title',
@@ -28,4 +29,10 @@ class Transaction extends Model
     {
         return $this->belongsTo(TransactionStatus::class);
     }
+
+    public function notif()
+    {
+        return $this->belongsTo(NotificationType::class,'transaction_status_id');
+    }
+
 }

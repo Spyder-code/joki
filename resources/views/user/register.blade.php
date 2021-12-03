@@ -5,7 +5,7 @@
 		<div class="navbar-bg"></div>
 		<div class="navbar-inner sliding">
 			<div class="left">
-				<a href="{{ url('/') }}" class="link external">
+				<a class="link back">
 					<i class="icon icon-back"></i>
 				</a>
 			</div>
@@ -30,55 +30,40 @@
 			<!-- end separator -->
 
 			<div class="content-form">
-				<form class="list" action="{{ route('register') }}" method="POST">
-                    @csrf
+				<form class="list">
 					<ul>
 						<li class="item-content item-input">
 							<div class="item-inner">
 								<div class="item-input-wrap">
-									<input type="text" placeholder="Name" name="name" required validate>
+									<input type="text" placeholder="Name">
 								</div>
 							</div>
 						</li>
 						<li class="item-content item-input">
 							<div class="item-inner">
 								<div class="item-input-wrap">
-									<input type="text" placeholder="Username" name="username" required validate>
+									<input type="email" placeholder="Email">
 								</div>
 							</div>
 						</li>
 						<li class="item-content item-input">
 							<div class="item-inner">
 								<div class="item-input-wrap">
-									<input type="number" placeholder="Phone" name="phone" required validate>
+									<input type="password" placeholder="Password">
 								</div>
 							</div>
 						</li>
 						<li class="item-content item-input">
 							<div class="item-inner">
 								<div class="item-input-wrap">
-									<input type="email" placeholder="Email" name="email" required validate>
-								</div>
-							</div>
-						</li>
-						<li class="item-content item-input">
-							<div class="item-inner">
-								<div class="item-input-wrap">
-									<input type="password" placeholder="Password" name="password" required validate>
-								</div>
-							</div>
-						</li>
-						<li class="item-content item-input">
-							<div class="item-inner">
-								<div class="item-input-wrap">
-									<input type="password" placeholder="Confirm Password" name="password_confirmation" required validate>
+									<input type="password" placeholder="Confirm Password">
 								</div>
 							</div>
 						</li>
 					</ul>
 					<div class="button-default">
 						<div class="container">
-							<button class="button" type="submit">Sign Up</button>
+							<button class="button">Sign Up</button>
 						</div>
 					</div>
 				</form>

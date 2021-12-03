@@ -23,8 +23,8 @@
                     </a>
                 </li>
 
-                <li class="{{ set_active(['modul.index','modul.create','modul.show','modul.edit']) }}">
-                    <a href="">
+                <li class="{{ set_active(['profile']) }}">
+                    <a href="{{ route('profile') }}">
                         <i class="simple-icon-user"></i>
                         <span>Profile</span>
                     </a>

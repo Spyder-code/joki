@@ -14,13 +14,14 @@ class Notification extends Model
         'notification_type_id',
     ];
 
-    public function transaction()
+    public function trans()
     {
-        return $this->belongsTo(Transaction::class);
+        return $this->belongsTo(Transaction::class,'transaction_id');
     }
 
     public function notification_type()
     {
         return $this->belongsTo(NotificationType::class);
     }
+
 }

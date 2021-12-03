@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -51,11 +52,22 @@ class LoginController extends Controller
         $fieldType = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
         if(auth()->attempt(array($fieldType => $input['username'], 'password' => $input['password'])))
         {
-            return redirect()->route('home');
+            if (Auth::user()->role_id==3) {
+                return redirect()->route('user.beranda')->with('login','login berhasil');
+            } else {
+                return redirect()->route('home');
+            }
+
         }else{
-            return redirect()->route('login')
+            return redirect()->back()
                 ->with('error','Email-Address And Password Are Wrong.');
         }
-
     }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('user.beranda')->with('logout','logout berhasil');
+    }
+
 }

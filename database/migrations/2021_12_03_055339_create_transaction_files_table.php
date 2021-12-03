@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTransactionUsersTable extends Migration
+class CreateTransactionFilesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateTransactionUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('transaction_users', function (Blueprint $table) {
+        Schema::create('transaction_files', function (Blueprint $table) {
             $table->id();
             $table->foreignId('transaction_id')->constrained('transactions');
-            $table->foreignId('freelance_id')->constrained('users');
-            $table->integer('status')->default(0);
+            $table->string('name');
+            $table->string('url');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateTransactionUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('transaction_users');
+        Schema::dropIfExists('transaction_files');
     }
 }

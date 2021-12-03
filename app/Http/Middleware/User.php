@@ -17,10 +17,16 @@ class User
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::user()->role_id==3){
-            return $next($request);
-        }else{
-            return abort(404);
+        if (Auth::check()) {
+            if(Auth::user()->role_id==3){
+                return $next($request);
+            }else{
+                return abort(404);
+            }
+        } else {
+            return redirect(route('user.sign-in'))->with('message','Mantap');
         }
+
+
     }
 }

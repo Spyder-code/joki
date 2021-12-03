@@ -15,13 +15,15 @@ class CreateTransactionsTable extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('category_id')->constrained('categories')->default(1);
+            $table->foreignId('category_id')->constrained('categories');
+            $table->foreignId('customer_id')->constrained('users');
             $table->foreignId('transaction_status_id')->constrained('transaction_statuses')->default(1);
             $table->string('code');
             $table->string('title');
             $table->text('note')->nullable();
             $table->string('price')->nullable();
-            $table->dateTime('deadline');
+            $table->date('deadline');
+            $table->string('file_complete')->nullable();
             $table->timestamps();
         });
     }
