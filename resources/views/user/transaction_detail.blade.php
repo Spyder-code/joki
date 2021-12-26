@@ -37,6 +37,9 @@
 				<!-- end separator -->
 
 				<div class="short-info">
+                    @if (Auth::user()->role_id==1 && !empty($transaction->freelance))
+					<p class="text-small">Pesanan dikerjakan oleh : <span>{{ $transaction->freelance->user->name }}</span></p>
+                    @endif
 					<p class="text-small">Pesanan dibuat : <span>{{ date('d F Y', strtotime($transaction->created_at)) }}</span></p>
 					<p class="text-small">Deadline : <span>{{ date('d F Y', strtotime($transaction->deadline)) }}</span></p>
 					<p class="text-small">Status :
@@ -50,7 +53,7 @@
                             @elseif($transaction->transaction_status_id==4)
                                 <strong class="color-red">Cancel</strong>
                             @elseif($transaction->transaction_status_id==5)
-                                <strong class="color-blue">Revisi</strong>
+                                <strong class="color-blue">Ready</strong>
                             @endif
                         </span>
                     </p>
@@ -119,6 +122,18 @@
                 </div>
 		</div>
 
+        <div class="item-details">
+            <div class="block-title title-small">
+				<h3>Progress Pengerjaan</h3>
+			</div>
+			@foreach ($file_progress as $item)
+            <div class="container display-flex justify-content-space-between margin-top">
+				<p>{{ $item->name }}</p>
+                <a href="{{ $item->url }}" target="d_blank" class="link external color-blue"><ion-icon name="download" style="font-size: 20px"></ion-icon> Download</a>
+			</div>
+            @endforeach
+        </div>
+
 		<!-- separator -->
 		<div class="separator-medium"></div>
 		<!-- end separator -->
@@ -134,7 +149,14 @@
                         @if ($transaction->transaction_status_id==3)
                             <h5 class="color-white">Pesanan selesai</h5>
                             <p class="text-small color-white"><span></span>{{ date('d F Y', strtotime($transaction->updated_at)) }}</p>
-                            <button class="button button-small button-with-auto">Download File</button>
+                            <div class="item-details">
+                                @foreach ($file_finish as $item)
+                                <div class="container display-flex justify-content-space-between margin-top">
+                                    <p class="color-white">{{ $item->name }}</p>
+                                    <a href="{{ $item->url }}" target="d_blank" class="link external color-white"><ion-icon name="download" style="font-size: 20px"></ion-icon> Download</a>
+                                </div>
+                                @endforeach
+                            </div>
                         @else
                             <h5 class="color-white text-center">Pesanan Belum Selesai</h5>
                         @endif

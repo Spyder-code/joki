@@ -34,15 +34,13 @@
                                 <div class="col-md-6 col-6 col-lg-6">
                                     <div class="form-group position-relative error-l-50">
                                         <label>Username</label>
-                                        <input type="text" class="{{ Auth::id()==1?'form-control':'form-control-plaintext' }}"  value="{{ Auth::user()->username }}">
-                                        <small>{{ Auth::id()==1?'':'Email tidak bisa diubah' }}</small>
+                                        <input type="text" class="form-control" name="username" value="{{ Auth::user()->username }}" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-6 col-lg-6">
                                     <div class="form-group position-relative error-l-50">
                                         <label>Email</label>
-                                        <input type="email" class="{{ Auth::id()==1?'form-control':'form-control-plaintext' }}" {{ Auth::id()==1?'':'readonly' }} value="{{ Auth::user()->email }}"  >
-                                        <small>{{ Auth::id()==1?'':'Email tidak bisa diubah' }}</small>
+                                        <input type="email" class="form-control" name="email" value="{{ Auth::user()->email }}" required>
                                     </div>
                                 </div>
                             </div>
@@ -91,7 +89,7 @@
                             @method('PUT')
                             <div class="form-group">
                                 <label for="email">Current Password</label>
-                                <input id="current_password" type="password" class="form-control" name="current_password" tabindex="1" required autofocus>
+                                <input id="current_password" type="password" class="form-control" name="current_password" tabindex="1" required>
                             </div>
                             <div class="form-group">
                                 <label for="password">New Password</label>
@@ -104,7 +102,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="confirm-password">Confirm Password</label>
-                                <input id="confirm-password" type="password" class="form-control" name="confirm-password"
+                                <input id="confirm-password" type="password" class="form-control" name="password_confirmation"
                                 tabindex="2" required>
                             </div>
                             <div class="form-group">

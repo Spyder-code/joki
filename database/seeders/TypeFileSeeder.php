@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\TransactionStatus;
+use App\Models\FileType;
 use Illuminate\Database\Seeder;
 
-class TransactionStatusSeeder extends Seeder
+class TypeFileSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,15 +15,13 @@ class TransactionStatusSeeder extends Seeder
     public function run()
     {
         $data = [
-            'Pending',
-            'On progress',
+            'Soal',
+            'Progress',
             'Finish',
-            'Cancel',
-            'Ready',
         ];
 
         foreach ($data as $item ) {
-            TransactionStatus::create([
+            FileType::create([
                 'name' => $item
             ]);
         }

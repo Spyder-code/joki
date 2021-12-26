@@ -16,16 +16,17 @@ class UserController extends Controller
             'name' => 'required',
             'phone' => 'required|numeric',
             'username' => 'required',
+            'email' => 'required|email'
         ]);
 
-        if (!empty($request->image)) {
+        if (!empty($request->avatar)) {
             $request->validate([
-                'image' => 'image|mimes:jpeg,png,jpg,svg|max:2048'
+                'avatar' => 'image|mimes:jpeg,png,jpg,svg|max:2048'
             ]);
             $profileImage = Auth::id().'.jpg';
-            $path = $request->file('image')->storeAs('public/user/avatar', $profileImage);
+            $path = $request->file('avatar')->storeAs('public/user/avatar', $profileImage);
             $url = Storage::url($path);
-            $imgUrl = url($url);
+            $imgUrl = url('/').$url;
             $validate['avatar'] = $imgUrl;
         }
         User::find(Auth::id())->update($validate);

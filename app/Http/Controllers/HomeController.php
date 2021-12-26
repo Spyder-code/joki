@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Transaction;
 use App\Models\User;
 use App\Models\Visitor;
+use App\Repositories\TransactionService;
+use App\Repositories\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -16,8 +19,13 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
+
+    private $transactionService;
+    private $userService;
+    public function __construct(TransactionService $transactionService, UserService $userService)
     {
+        $this->transactionService = $transactionService;
+        $this->userService = $userService;
         $this->middleware('auth');
     }
 
@@ -34,8 +42,19 @@ class HomeController extends Controller
         if (Auth::user()->role_id==3) {
             return redirect()->route('user.beranda')->with('login','login berhasil');
         } else {
-            // return redirect()->route('home');
-            return view('layouts.dashboard');
+            $count = $this->transactionService->count();
+            if (Auth::user()->role_id==1) {
+                $user = $this->userService->freelance();
+                $data = $this->transactionService->allWithStatus(1);
+                $rating = null;
+            }else{
+                $data = $this->transactionService->allWithStatus(2);
+                $star = $this->transactionService->rating()->sum('star');
+                $sum = $this->transactionService->rating()->count();
+                $rating = $star/$sum;
+                $user = null;
+            }
+            return view('main', compact('data','count','user','rating'));
         }
     }
 

@@ -334,7 +334,7 @@
                                     @elseif($item->transaction_status_id==4)
                                         <strong class="color-red">Cancel</strong>
                                     @elseif($item->transaction_status_id==5)
-                                        <strong class="color-blue">Revisi</strong>
+                                        <strong class="color-blue">Ready</strong>
                                     @endif
                                 </strong>
                             </div>
@@ -460,7 +460,7 @@
                                 </div>
                                 <div class="col-33">
                                     <div class="content">
-                                        <h4>19</h4>
+                                        <h4>{{ $transaction->count() }}</h4>
                                         <span>Pesanan</span>
                                     </div>
                                 </div>
@@ -472,7 +472,11 @@
                         <!-- end separator -->
 
                         <div class="contact-button">
+                            @if (Auth::user()->role_id==3)
                             <button class="button">{{ Auth::user()->username }}</button>
+                            @else
+                                <a href="{{ route('home') }}" class="button link external">Dashboard</a>
+                            @endif
                         </div>
 
                         <!-- separator -->

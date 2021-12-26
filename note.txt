@@ -1,0 +1,6 @@
+Admin:
+ - CRUD freelance akun
+ - Add freelance to transaction (table transaction_users)
+ - CRUD transaction
+
+

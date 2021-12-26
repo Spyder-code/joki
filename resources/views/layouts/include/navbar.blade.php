@@ -43,7 +43,7 @@
                 aria-haspopup="true" aria-expanded="false">
                 <i class="simple-icon-grid"></i>
             </button>
-            <div class="dropdown-menu dropdown-menu-right mt-3  position-absolute" id="iconMenuDropdown">
+            {{-- <div class="dropdown-menu dropdown-menu-right mt-3  position-absolute" id="iconMenuDropdown">
                 <a href="#" class="icon-menu-item">
                     <i class="iconsminds-equalizer d-block"></i>
                     <span>Settings</span>
@@ -74,16 +74,16 @@
                     <span>Tasks</span>
                 </a>
 
-            </div>
+            </div> --}}
         </div>
 
         <div class="position-relative d-inline-block">
             <button class="header-icon btn btn-empty" type="button" id="notificationButton"
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="simple-icon-bell"></i>
-            <span class="count">3</span>
+            <span class="count">0</span>
         </button>
-        <div class="dropdown-menu dropdown-menu-right mt-3 position-absolute" id="notificationDropdown">
+        {{-- <div class="dropdown-menu dropdown-menu-right mt-3 position-absolute" id="notificationDropdown">
             <div class="scroll">
                 <div class="d-flex flex-row mb-3 pb-3 border-bottom">
                     <a href="#">
@@ -135,7 +135,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 
 
@@ -151,11 +151,7 @@
 </button>
 
 <div class="dropdown-menu dropdown-menu-right mt-3">
-    @if (auth()->user()->role == 'admin')
-    <a class="dropdown-item" href="">Account</a>
-    @else
-    <a class="dropdown-item" href="">Account</a>
-    @endif
+    <a class="dropdown-item" href="{{ route('profile') }}">Account</a>
     <a class="dropdown-item" href="{{ route('logout') }}"
     onclick="event.preventDefault();
     document.getElementById('logout-form').submit();">Sign out</a>

@@ -4,7 +4,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
-            <h1>Datatables Rows</h1>
+            <h1>List Freelance</h1>
 
             <div class="top-right-button-container">
                 <div class="btn-group">
@@ -18,14 +18,14 @@
                     <a class="dropdown-item" id="dataTablesPdf" href="#">Pdf</a>
                 </div>
                 <div class="top-right-button-container">
-                    <a href="{{ route('siswa.create') }}" class="btn btn-outline-primary btn-lg">
+                    <a href="" class="btn btn-outline-primary btn-lg">
                         TAMBAH DATA</a>
                     </div>
                 </div>
 
             </div>
 
-            <nav class="breadcrumb-container d-none d-sm-block d-lg-inline-block" aria-label="breadcrumb">
+            {{-- <nav class="breadcrumb-container d-none d-sm-block d-lg-inline-block" aria-label="breadcrumb">
                 <ol class="breadcrumb pt-0">
                     <li class="breadcrumb-item">
                         <a href="#">Home</a>
@@ -35,7 +35,7 @@
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">Data</li>
                 </ol>
-            </nav>
+            </nav> --}}
             <div class="mb-2">
                 <a class="btn pt-0 pl-0 d-inline-block d-md-none" data-toggle="collapse" href="#displayOptions"
                 role="button" aria-expanded="true" aria-controls="displayOptions">
@@ -80,13 +80,11 @@
                         <th>Email</th>
                         <th>Hp/Telepon</th>
                         <th>Tanggal daftar</th>
-                        <th>Tempat/Tgl Lahir</th>
-                        <th>Status</th>
                         <th class="empty">&nbsp;</th>
                     </tr>
                 </thead>
                 <tbody class="list">
-                    @foreach ($data as $item)
+                    @foreach ($freelance as $item)
                         <tr>
                             <td></td>
                             <td>{{ $item->username }}</td>

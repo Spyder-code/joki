@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTransactionFilesTable extends Migration
+class CreateFileTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateTransactionFilesTable extends Migration
      */
     public function up()
     {
-        Schema::create('transaction_files', function (Blueprint $table) {
+        Schema::create('file_types', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('transaction_id')->constrained('transactions');
-            $table->foreignId('file_type_id')->constrained('file_types');
             $table->string('name');
-            $table->string('url');
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ class CreateTransactionFilesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('transaction_files');
+        Schema::dropIfExists('file_types');
     }
 }

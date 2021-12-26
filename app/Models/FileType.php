@@ -5,13 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TransactionFile extends Model
+class FileType extends Model
 {
     use HasFactory;
+
     protected $fillable = [
-        'transaction_id',
         'name',
-        'url',
-        'file_type_id',
     ];
 }
